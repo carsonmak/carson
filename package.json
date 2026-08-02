@@ -1,0 +1,14 @@
+{
+  "name": "carson-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev . --compatibility-date=2026-08-02",
+    "d1:init": "wrangler d1 execute carson-db --file=sql/schema.sql",
+    "d1:seed": "wrangler d1 execute carson-db --file=sql/seed.sql",
+    "deploy": "wrangler pages deploy ."
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

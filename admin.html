@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>博客后台管理</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/default-data.js"></script>
+    <script src="assets/api.js"></script>
+    <script src="assets/auth.js"></script>
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <header class="admin-header">
+        <div>
+          <span class="eyebrow">Admin Panel</span>
+          <h1>博客后台管理</h1>
+          <p>修改站点信息、主题色和文章内容。所有修改会保存在当前浏览器，也可以导出 JSON 备份。</p>
+        </div>
+        <div class="admin-actions">
+          <a class="ghost-button" href="index.html">查看前台</a>
+          <a class="ghost-button" href="friends.html">查看友链</a>
+          <button class="primary-button" id="saveAll" type="button">保存设置</button>
+        </div>
+      </header>
+
+      <section class="admin-grid">
+        <form class="admin-card" id="siteForm">
+          <h2>站点设置</h2>
+          <label>站点标题<input name="title" required /></label>
+          <label>副标题<textarea name="subtitle" rows="3"></textarea></label>
+          <label>作者<input name="author" /></label>
+          <label>所在地<input name="location" /></label>
+          <label>头像 URL<input name="avatar" /></label>
+          <label>封面 URL<input name="cover" /></label>
+          <label>主题色<input name="accent" type="color" /></label>
+          <label>页脚文案<input name="footer" /></label>
+        </form>
+
+        <section class="admin-card">
+          <div class="card-title-row">
+            <h2>文章列表</h2>
+            <button class="primary-button" id="newPost" type="button">新建文章</button>
+          </div>
+          <div class="post-manager-list" id="postManagerList"></div>
+        </section>
+      </section>
+
+      <section class="admin-card editor-card">
+        <h2>文章编辑</h2>
+        <form class="post-form" id="postForm">
+          <input name="id" type="hidden" />
+          <label>标题<input name="title" required /></label>
+          <label>摘要<textarea name="excerpt" rows="3"></textarea></label>
+          <label>正文<textarea name="content" rows="10"></textarea></label>
+          <div class="form-row">
+            <label>发布日期<input name="date" type="date" /></label>
+            <label>更新日期<input name="updated" type="date" /></label>
+          </div>
+          <label>标签，用英文逗号分隔<input name="tags" placeholder="博客,生活,技术" /></label>
+          <label>封面图 URL<input name="image" /></label>
+          <label class="checkbox-label"><input name="pinned" type="checkbox" /> 置顶文章</label>
+          <div class="admin-actions">
+            <button class="primary-button" type="submit">保存文章</button>
+            <button class="danger-button" id="deletePost" type="button">删除当前文章</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-card editor-card">
+        <div class="card-title-row">
+          <div>
+            <h2>友链管理</h2>
+            <p class="muted">点击左侧任意现有友链即可修改名称、链接、小头像和审核状态，也可以删除；只有审核通过的友链会显示在“朋友们”页面。</p>
+          </div>
+          <button class="primary-button" id="newFriend" type="button">新建友链</button>
+        </div>
+        <div class="friend-admin-layout">
+          <div class="post-manager-list" id="friendManagerList"></div>
+          <form class="post-form" id="friendForm">
+            <input name="id" type="hidden" />
+            <label>站点名称<input name="name" required /></label>
+            <label>站点链接<input name="url" required type="url" /></label>
+            <label>一句话介绍<textarea name="description" rows="3"></textarea></label>
+            <label>小头像 URL，可直接修改现有友链头像<input name="avatar" /></label>
+            <label>上传/替换小头像<input name="avatarFile" type="file" accept="image/*" /></label>
+            <label>审核状态
+              <select name="status">
+                <option value="pending">待审核</option>
+                <option value="approved">审核通过，前台显示</option>
+                <option value="rejected">审核不通过，前台隐藏</option>
+              </select>
+            </label>
+            <div class="friend-preview" id="friendPreview"></div>
+            <div class="admin-actions">
+              <button class="primary-button" type="submit">保存友链</button>
+              <button class="ghost-button" id="approveFriend" type="button">通过审核</button>
+              <button class="danger-button" id="rejectFriend" type="button">不通过并隐藏</button>
+              <button class="danger-button" id="deleteFriend" type="button">删除当前友链</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-card">
+        <h2>数据导入导出</h2>
+        <p class="muted">导出后可备份数据。正式部署时，可以把 JSON 内容合并到 `assets/default-data.js`。</p>
+        <div class="admin-actions">
+          <button class="ghost-button" id="exportJson" type="button">导出 JSON</button>
+          <label class="file-button">导入 JSON<input id="importJson" type="file" accept="application/json" /></label>
+          <button class="danger-button" id="resetData" type="button">恢复默认数据</button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="移动端导航">
+      <a href="index.html">主页</a>
+      <a href="index.html#articles">文章</a>
+      <a href="diary.html">留言</a>
+      <a href="friends.html">朋友们</a>
+      <a href="about.html">我</a>
+    </nav>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="assets/admin.js"></script>
+  </body>
+</html>

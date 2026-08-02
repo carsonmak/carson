@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>CARSON</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/default-data.js"></script>
+    <script src="assets/api.js"></script>
+    <script src="assets/auth.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="profile-panel">
+        <div class="cover" id="siteCover"></div>
+        <div class="profile-card">
+          <img class="avatar" id="siteAvatar" alt="头像" />
+          <div>
+            <h1 id="siteTitle">CARSON</h1>
+            <p id="siteSubtitle">把生活、技术和灵感写成一条条动态</p>
+          </div>
+          <div class="profile-meta">
+            <span id="siteAuthor">你的名字</span>
+            <span id="siteLocation">Guangzhou</span>
+          </div>
+          <div class="profile-actions">
+            <a class="admin-link" href="admin.html">进入后台管理</a>
+            <a class="ghost-button" href="auth.html">注册 / 登录</a>
+            <a class="ghost-button" href="diary.html">留言</a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="feed-panel" id="articles">
+        <header class="mobile-topbar">
+          <img class="mini-avatar" id="mobileAvatar" alt="头像" />
+          <div>
+            <strong id="mobileTitle">CARSON</strong>
+            <span id="postCount">0 条动态</span>
+          </div>
+        </header>
+
+        <section class="composer-card">
+          <div>
+            <span class="eyebrow">Personal Blog</span>
+            <h2>最新记录</h2>
+            <p>像刷朋友圈一样阅读文章，也可以点开查看完整内容。</p>
+          </div>
+          <button class="ghost-button" id="themeToggle" type="button">切换明暗</button>
+        </section>
+
+        <nav class="tag-strip" id="tags" aria-label="文章标签"></nav>
+        <section class="feed-list" id="feedList" aria-live="polite"></section>
+        <footer class="site-footer" id="siteFooter"></footer>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="移动端导航">
+      <a class="active" href="index.html">主页</a>
+      <a href="index.html#articles">文章</a>
+      <a href="diary.html">留言</a>
+      <a href="friends.html">朋友们</a>
+      <a href="about.html">我</a>
+    </nav>
+
+    <dialog class="post-dialog" id="postDialog">
+      <article>
+        <button class="close-button" id="closeDialog" type="button" aria-label="关闭">×</button>
+        <img class="dialog-image" id="dialogImage" alt="" />
+        <div class="dialog-body">
+          <div class="post-meta" id="dialogMeta"></div>
+          <h2 id="dialogTitle"></h2>
+          <div class="dialog-tags" id="dialogTags"></div>
+          <div class="article-content" id="dialogContent"></div>
+          <section class="comment-box">
+            <h3>文章评论</h3>
+            <div class="comment-list" id="postCommentList"></div>
+            <form class="inline-comment-form" id="postCommentForm">
+              <label class="post-guest-name">游客昵称<input name="guestName" placeholder="游客" /></label>
+              <label>评论内容<textarea name="content" required rows="3" placeholder="写下你的评论"></textarea></label>
+              <button class="primary-button" type="submit">发表评论</button>
+            </form>
+          </section>
+        </div>
+      </article>
+    </dialog>
+
+    <script src="assets/app.js?v=cloudflare-d1-admin-env"></script>
+  </body>
+</html>

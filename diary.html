@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>留言</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/default-data.js"></script>
+    <script src="assets/api.js"></script>
+    <script src="assets/auth.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-hero">
+        <a class="ghost-button" href="index.html">返回首页</a>
+        <span class="eyebrow">Message</span>
+        <h1>留言</h1>
+        <p>用户和游客都可以发布留言，也可以在每条留言下面继续评论。</p>
+        <div class="admin-actions">
+          <a class="primary-button" href="auth.html" id="accountLink">注册 / 登录</a>
+          <button class="ghost-button" id="logoutButton" type="button">退出登录</button>
+        </div>
+      </header>
+
+      <section class="admin-card">
+        <div class="card-title-row">
+          <div>
+            <h2>写点什么</h2>
+            <p class="muted" id="identityText">当前以游客身份发布。</p>
+          </div>
+        </div>
+        <form class="diary-form" id="diaryForm">
+          <input type="hidden" name="type" value="message" />
+          <div class="form-row">
+            <label class="guest-name-field">游客昵称<input name="guestName" placeholder="游客" /></label>
+          </div>
+          <label>标题<input name="title" required placeholder="给这条内容取个标题" /></label>
+          <label>内容<textarea name="content" required rows="5" placeholder="写下你的留言或评论"></textarea></label>
+          <button class="primary-button" type="submit">发布</button>
+        </form>
+      </section>
+
+      <nav class="tag-strip" id="diaryFilters" aria-label="留言筛选">
+        <button class="tag active" type="button" data-filter="all">全部</button>
+        <button class="tag" type="button" data-filter="message">留言</button>
+      </nav>
+
+      <section class="diary-list" id="diaryList" aria-live="polite"></section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="移动端导航">
+      <a href="index.html">主页</a>
+      <a href="index.html#articles">文章</a>
+      <a class="active" href="diary.html">留言</a>
+      <a href="friends.html">朋友们</a>
+      <a href="about.html">我</a>
+    </nav>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="assets/diary.js"></script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>朋友们</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/default-data.js"></script>
+    <script src="assets/api.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-hero">
+        <a class="ghost-button" href="index.html">返回首页</a>
+        <span class="eyebrow">Friends</span>
+        <h1>朋友们</h1>
+        <p>这里展示已经审核通过的友情链接。你也可以提交自己的站点，等待站长在后台审核后展示。</p>
+      </header>
+
+      <section class="friend-grid" id="friendGrid" aria-live="polite"></section>
+
+      <section class="admin-card submit-card">
+        <div>
+          <span class="eyebrow">Apply</span>
+          <h2>申请加入友链</h2>
+          <p class="muted">提交后会进入“待审核”状态，站长在后台通过后才会显示在友链页面。</p>
+        </div>
+        <form class="friend-submit-form" id="friendSubmitForm">
+          <label>站点名称<input name="name" required placeholder="例如：某某的博客" /></label>
+          <label>站点链接<input name="url" required type="url" placeholder="https://example.com" /></label>
+          <label>一句话介绍<textarea name="description" rows="3" placeholder="介绍一下你的网站"></textarea></label>
+          <label>头像 URL<input name="avatarUrl" placeholder="也可以不填，改用下方上传" /></label>
+          <label>上传小头像<input name="avatarFile" type="file" accept="image/*" /></label>
+          <button class="primary-button" type="submit">提交审核</button>
+        </form>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="移动端导航">
+      <a href="index.html">主页</a>
+      <a href="index.html#articles">文章</a>
+      <a href="diary.html">留言</a>
+      <a class="active" href="friends.html">朋友们</a>
+      <a href="about.html">我</a>
+    </nav>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="assets/friends.js"></script>
+  </body>
+</html>
